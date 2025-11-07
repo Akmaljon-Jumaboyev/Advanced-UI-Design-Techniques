@@ -1,0 +1,812 @@
+//TASK 1
+import 'package:flutter/material.dart';
+
+void main() => runApp(const MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: WidgetsDemo(),
+    );
+  }
+}
+
+class WidgetsDemo extends StatelessWidget {
+  const WidgetsDemo({super.key});
+
+  Widget box(Color c) => Container(
+        width: 70,
+        height: 70,
+        decoration: BoxDecoration(color: c, borderRadius: BorderRadius.circular(12)),
+      );
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                box(Colors.red),
+                box(Colors.green),
+                box(Colors.blue),
+              ],
+            ),
+            const SizedBox(height: 24),
+            Wrap(
+              spacing: 12,
+              runSpacing: 12,
+              children: [
+                box(Colors.orange),
+                box(Colors.purple),
+                box(Colors.pink),
+               
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
+
+//TASK 2
+//_________________________________________________________________________________________________
+
+import 'package:flutter/material.dart';
+
+void main() => runApp(const MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: DemoPage(),
+    );
+  }
+}
+
+class DemoPage extends StatelessWidget {
+  const DemoPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const CustomTitle(text: 'CustomTitle Demo', color: Colors.white)),
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: const [
+            CustomTitle(text: 'Section One', color: Colors.deepPurple),
+            SizedBox(height: 12),
+            Text('Some body text under section one.'),
+            SizedBox(height: 24),
+            CustomTitle(text: 'Section Two', color: Colors.teal),
+            SizedBox(height: 12),
+            Text('More content for another section.'),
+            SizedBox(height: 24),
+            CustomTitle(text: 'Final Notes', color: Colors.red),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class CustomTitle extends StatelessWidget {
+  final String text;
+  final Color color;
+
+  const CustomTitle({
+    super.key,
+    required this.text,
+    this.color = Colors.black,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      style: TextStyle(
+        color: color,
+        fontSize: 24,
+        fontWeight: FontWeight.bold,
+      ),
+    );
+  }
+}
+
+ 
+
+//TASK 3
+//_________________________________________________________________________________________________
+import 'package:flutter/material.dart';
+
+void main() => runApp(const MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        body: Center(child: CustomCounter()),
+      ),
+    );
+  }
+}
+
+class CustomCounter extends StatefulWidget {
+  const CustomCounter({super.key});
+
+  @override
+  State<CustomCounter> createState() => _CustomCounterState();
+}
+
+class _CustomCounterState extends State<CustomCounter> {
+  int _count = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(12),
+        color: Colors.grey.shade200,
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          IconButton(
+            onPressed: () => setState(() => _count--),
+            icon: const Icon(Icons.remove),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12),
+            child: Text(
+              '$_count',
+              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+          ),
+          IconButton(
+            onPressed: () => setState(() => _count++),
+            icon: const Icon(Icons.add),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+
+//TASK 4
+//_________________________________________________________________________________________________
+import 'package:flutter/material.dart';
+
+void main() => runApp(const MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: HomePage(),
+    );
+  }
+}
+
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: const [
+            CustomTitle(text: 'Welcome', color: Colors.deepPurple),
+            SizedBox(height: 16),
+            CustomCounter(),
+            SizedBox(height: 24),
+            CustomTitle(text: 'Tap + or –', color: Colors.teal),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class CustomTitle extends StatelessWidget {
+  final String text;
+  final Color color;
+  const CustomTitle({super.key, required this.text, this.color = Colors.black});
+  @override
+  Widget build(BuildContext context) {
+    return Text(text, style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: color));
+  }
+}
+
+class CustomCounter extends StatefulWidget {
+  const CustomCounter({super.key});
+  @override
+  State<CustomCounter> createState() => _CustomCounterState();
+}
+
+class _CustomCounterState extends State<CustomCounter> {
+  int _count = 0;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(color: Colors.grey.shade200, borderRadius: BorderRadius.circular(12)),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          IconButton(onPressed: () => setState(() => _count--), icon: const Icon(Icons.remove)),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12),
+            child: Text('$_count', style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+          ),
+          IconButton(onPressed: () => setState(() => _count++), icon: const Icon(Icons.add)),
+        ],
+      ),
+    );
+  }
+}
+
+
+
+
+//TASK 5
+//_________________________________________________________________________________________________
+import 'package:flutter/material.dart';
+
+void main() => runApp(const MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        body: Center(child: AnimatedBox()),
+      ),
+    );
+  }
+}
+
+class AnimatedBox extends StatefulWidget {
+  const AnimatedBox({super.key});
+
+  @override
+  State<AnimatedBox> createState() => _AnimatedBoxState();
+}
+
+class _AnimatedBoxState extends State<AnimatedBox> {
+  bool _toggled = false;
+
+  @override
+  Widget build(BuildContext context) {
+    final double size = _toggled ? 180 : 120;
+    final Color color = _toggled ? Colors.red : Colors.blue;
+    final BorderRadius radius =
+        _toggled ? BorderRadius.circular(32) : BorderRadius.circular(4);
+
+    return GestureDetector(
+      onTap: () => setState(() => _toggled = !_toggled),
+      child: AnimatedContainer(
+        width: size,
+        height: size,
+        decoration: BoxDecoration(color: color, borderRadius: radius),
+        duration: const Duration(milliseconds: 400),
+        curve: Curves.easeInOut,
+      ),
+    );
+  }
+}
+
+
+
+
+
+//TASK 6
+//_________________________________________________________________________________________________
+import 'package:flutter/material.dart';
+
+void main() => runApp(const MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: LogoMovePage(),
+    );
+  }
+}
+
+class LogoMovePage extends StatefulWidget {
+  const LogoMovePage({super.key});
+
+  @override
+  State<LogoMovePage> createState() => _LogoMovePageState();
+}
+
+class _LogoMovePageState extends State<LogoMovePage>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _controller;
+  late final Animation<Alignment> _alignment;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller =
+        AnimationController(vsync: this, duration: const Duration(milliseconds: 800));
+    _alignment = AlignmentTween(
+      begin: Alignment.centerLeft,
+      end: Alignment.centerRight,
+    ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  void _run() {
+    if (_controller.status == AnimationStatus.completed) {
+      _controller.reverse(from: 1);
+    } else {
+      _controller.forward(from: 0);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SafeArea(
+        child: Column(
+          children: [
+            Expanded(
+              child: AnimatedBuilder(
+                animation: _alignment,
+                builder: (context, _) {
+                  return Align(
+                    alignment: _alignment.value,
+                    child: const FlutterLogo(size: 80),
+                  );
+                },
+              ),
+            ),
+            const SizedBox(height: 12),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 20),
+              child: ElevatedButton(
+                onPressed: _run,
+                child: const Text('Run Animation'),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
+
+
+
+//TASK 7
+//_________________________________________________________________________________________________
+import 'package:flutter/material.dart';
+
+void main() => runApp(const MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: GestureDemo(),
+    );
+  }
+}
+
+class GestureDemo extends StatefulWidget {
+  const GestureDemo({super.key});
+
+  @override
+  State<GestureDemo> createState() => _GestureDemoState();
+}
+
+class _GestureDemoState extends State<GestureDemo> {
+  Color _bg = Colors.white;
+  String _label = 'Waiting...';
+
+  void _set(Color c, String t) => setState(() {
+        _bg = c;
+        _label = t;
+      });
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: GestureDetector(
+        onTap: () => _set(Colors.lightBlue.shade100, 'Single Tap'),
+        onDoubleTap: () => _set(Colors.green.shade200, 'Double Tap'),
+        onLongPress: () => _set(Colors.orange.shade200, 'Long Press'),
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 250),
+          curve: Curves.easeInOut,
+          color: _bg,
+          child: const Center(
+            child: Text(
+              'Tap, Double Tap, or Long Press',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+
+
+//TASK 8
+//_________________________________________________________________________________________________
+import 'package:flutter/material.dart';
+
+void main() => runApp(const MyApp());
+
+class MyApp extends StatefulWidget {
+  const MyApp({super.key});
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  bool _dark = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      themeMode: _dark ? ThemeMode.dark : ThemeMode.light,
+      theme: ThemeData(
+        useMaterial3: true,
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
+        textTheme: const TextTheme(
+          titleLarge: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+        ),
+      ),
+      darkTheme: ThemeData(
+        useMaterial3: true,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.teal,
+          brightness: Brightness.dark,
+        ),
+        textTheme: const TextTheme(
+          titleLarge: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+        ),
+      ),
+      home: HomePage(
+        isDark: _dark,
+        onToggle: (v) => setState(() => _dark = v),
+      ),
+    );
+  }
+}
+
+class HomePage extends StatelessWidget {
+  final bool isDark;
+  final ValueChanged<bool> onToggle;
+  const HomePage({super.key, required this.isDark, required this.onToggle});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Themed App'),
+        actions: [
+          Row(
+            children: [
+              const Padding(
+                padding: EdgeInsets.only(right: 8),
+                child: Icon(Icons.light_mode),
+              ),
+              Switch(value: isDark, onChanged: onToggle),
+              const Padding(
+                padding: EdgeInsets.only(right: 12, left: 8),
+                child: Icon(Icons.dark_mode),
+              ),
+            ],
+          ),
+        ],
+      ),
+      body: Center(
+        child: Text(
+          isDark ? 'Dark Mode' : 'Light Mode',
+          style: Theme.of(context).textTheme.titleLarge,
+        ),
+      ),
+    );
+  }
+}
+
+
+
+
+//TASK 9
+//_________________________________________________________________________________________________
+import 'package:flutter/material.dart';
+
+void main() => runApp(const MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: AnimatedListDemo(),
+    );
+  }
+}
+
+class AnimatedListDemo extends StatefulWidget {
+  const AnimatedListDemo({super.key});
+  @override
+  State<AnimatedListDemo> createState() => _AnimatedListDemoState();
+}
+
+class _AnimatedListDemoState extends State<AnimatedListDemo> {
+  final GlobalKey<AnimatedListState> _listKey = GlobalKey<AnimatedListState>();
+  final List<int> _items = <int>[];
+  int _counter = 1;
+
+  void _addItem() {
+    final index = _items.length;
+    _items.insert(index, _counter++);
+    _listKey.currentState?.insertItem(index, duration: const Duration(milliseconds: 350));
+  }
+
+  Widget _buildItem(BuildContext context, int index, Animation<double> animation) {
+    return SizeTransition(
+      sizeFactor: CurvedAnimation(parent: animation, curve: Curves.easeOut),
+      child: FadeTransition(
+        opacity: animation,
+        child: Card(
+          margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          child: ListTile(
+            leading: const Icon(Icons.label),
+            title: Text('Item ${_items[index]}'),
+          ),
+        ),
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('AnimatedList Practice')),
+      body: AnimatedList(
+        key: _listKey,
+        initialItemCount: _items.length,
+        itemBuilder: (context, index, animation) => _buildItem(context, index, animation),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _addItem,
+        child: const Icon(Icons.add),
+      ),
+    );
+  }
+}
+
+
+
+
+
+
+
+//TASK 10
+//_________________________________________________________________________________________________
+import 'package:flutter/material.dart';
+
+void main() => runApp(const Root());
+
+class Root extends StatefulWidget {
+  const Root({super.key});
+  @override
+  State<Root> createState() => _RootState();
+}
+
+class _RootState extends State<Root> {
+  bool _dark = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      themeMode: _dark ? ThemeMode.dark : ThemeMode.light,
+      theme: ThemeData(
+        useMaterial3: true,
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
+        textTheme: const TextTheme(
+          titleLarge: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+        ),
+      ),
+      darkTheme: ThemeData(
+        useMaterial3: true,
+        colorScheme:
+            ColorScheme.fromSeed(seedColor: Colors.teal, brightness: Brightness.dark),
+        textTheme: const TextTheme(
+          titleLarge: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+        ),
+      ),
+      home: HomePage(isDark: _dark, onToggleTheme: (v) => setState(() => _dark = v)),
+    );
+  }
+}
+
+class HomePage extends StatefulWidget {
+  final bool isDark;
+  final ValueChanged<bool> onToggleTheme;
+  const HomePage({super.key, required this.isDark, required this.onToggleTheme});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  bool _toggled = false;
+
+  void _toggleCard() => setState(() => _toggled = !_toggled);
+
+  @override
+  Widget build(BuildContext context) {
+    final cs = Theme.of(context).colorScheme;
+
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Mini Themed UI'),
+        centerTitle: true,
+        actions: [
+          Row(children: [
+            const Icon(Icons.light_mode, size: 18),
+            Switch(value: widget.isDark, onChanged: widget.onToggleTheme),
+            const Icon(Icons.dark_mode, size: 18),
+            const SizedBox(width: 8),
+          ])
+        ],
+      ),
+      body: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            CustomTitle(text: 'Welcome', color: cs.primary),
+            const SizedBox(height: 16),
+            GestureDetector(
+              onTap: _toggleCard,
+              onDoubleTap: _toggleCard,
+              onLongPress: _toggleCard,
+              child: AnimatedContainer(
+                duration: const Duration(milliseconds: 400),
+                curve: Curves.easeInOut,
+                width: _toggled ? 240 : 200,
+                height: _toggled ? 140 : 120,
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: _toggled ? cs.secondaryContainer : cs.primaryContainer,
+                  borderRadius: BorderRadius.circular(_toggled ? 28 : 12),
+                  boxShadow: [
+                    BoxShadow(
+                      blurRadius: _toggled ? 24 : 12,
+                      spreadRadius: 0,
+                      offset: const Offset(0, 8),
+                      color: cs.shadow.withOpacity(0.15),
+                    ),
+                  ],
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CustomTitle(
+                      text: _toggled ? 'Hello there!' : 'Tap me',
+                      color: cs.onPrimaryContainer,
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      _toggled ? 'AnimatedContainer active' : 'Gesture to animate',
+                      style: TextStyle(color: cs.onPrimaryContainer),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(height: 24),
+            const CustomCounter(),
+            const SizedBox(height: 24),
+            CustomTitle(text: 'Enjoy the theme', color: cs.tertiary),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class CustomTitle extends StatelessWidget {
+  final String text;
+  final Color color;
+  const CustomTitle({super.key, required this.text, this.color = Colors.black});
+  @override
+  Widget build(BuildContext context) {
+    return Text(text,
+        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: color));
+  }
+}
+
+class CustomCounter extends StatefulWidget {
+  const CustomCounter({super.key});
+  @override
+  State<CustomCounter> createState() => _CustomCounterState();
+}
+
+class _CustomCounterState extends State<CustomCounter> {
+  int _count = 0;
+  @override
+  Widget build(BuildContext context) {
+    final cs = Theme.of(context).colorScheme;
+    return Container(
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: cs.surfaceVariant,
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          IconButton(onPressed: () => setState(() => _count--), icon: const Icon(Icons.remove)),
+          AnimatedSwitcher(
+            duration: const Duration(milliseconds: 200),
+            transitionBuilder: (child, anim) =>
+                ScaleTransition(scale: anim, child: child),
+            child: Text(
+              '$_count',
+              key: ValueKey(_count),
+              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+          ),
+          IconButton(onPressed: () => setState(() => _count++), icon: const Icon(Icons.add)),
+        ],
+      ),
+    );
+  }
+}
+
+
+
+
+
+
+
+
